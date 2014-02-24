@@ -1,4 +1,4 @@
-cs174a-databases
-================
+CS 174A
+=====================================
 
-Project written in Play.
+We will be using Scala's Play framework for our project.

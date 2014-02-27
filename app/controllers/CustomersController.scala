@@ -11,8 +11,8 @@ import models.Customer
 object CustomersController extends Controller {
   val customerForm = Form(
     tuple(
-      "first_name" -> nonEmptyText(maxLength = 10),
-      "last_name" -> nonEmptyText(maxLength = 10),
+      "firstName" -> nonEmptyText(maxLength = 10),
+      "lastName" -> nonEmptyText(maxLength = 10),
       "email" -> email,
       "password" -> nonEmptyText(minLength = 5, maxLength = 10),
       "street" -> nonEmptyText(maxLength = 10),

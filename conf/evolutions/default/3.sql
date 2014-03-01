@@ -6,7 +6,8 @@ CREATE SEQUENCE model_id_seq;
 CREATE TABLE model (
     id integer NOT NULL DEFAULT nextval('model_id_seq'),
     modelNumber char(10) NOT NULL,
-    FOREIGN KEY (company_id) REFERENCES manufacturer(id),
+    companyId INTEGER NOT NULL,
+    FOREIGN KEY (companyId) REFERENCES manufacturer(id),
     PRIMARY KEY (id)
 )
 

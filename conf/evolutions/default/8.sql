@@ -5,8 +5,10 @@
 CREATE SEQUENCE accessories_id_seq;
 CREATE TABLE accessories (
     id integer NOT NULL DEFAULT nextval('accessories_id_seq'),
-    FOREIGN KEY (product_id) REFERENCES cat_product(id),
-    FOREIGN KEY (accessory_id) REFERENCES cat_product(id),
+    productId INTEGER NOT NULL,
+    accessoryId INTEGER NOT NULL,
+    FOREIGN KEY (productId) REFERENCES cat_product(id),
+    FOREIGN KEY (accessoryId) REFERENCES cat_product(id),
     PRIMARY KEY (id)
 )
 

@@ -1,17 +1,17 @@
-# Model Schema
+# Models Schema
 
 # --- !Ups
 
 CREATE SEQUENCE model_id_seq;
-CREATE TABLE model (
+CREATE TABLE models (
     id integer NOT NULL DEFAULT nextval('model_id_seq'),
     modelNumber varchar(10) NOT NULL,
-    companyId integer NOT NULL,
-    FOREIGN KEY (companyId) REFERENCES manufacturer(id),
+    companyID integer NOT NULL,
+    FOREIGN KEY (companyID) REFERENCES manufacturers(id),
     PRIMARY KEY (id)
 )
 
 # --- !Downs
 
-DROP TABLE model;
+DROP TABLE models;
 DROP SEQUENCE model_id_seq;

@@ -1,20 +1,19 @@
-# Product Schema
+# Products Schema
 
 # --- !Ups
 
 CREATE SEQUENCE product_id_seq;
-CREATE TABLE product (
+CREATE TABLE products (
     id integer NOT NULL DEFAULT nextval('product_id_seq'),
     stockNumber varchar(5) NOT NULL,
-    modelId integer NOT NULL,
-    companyId integer NOT NULL,
-    FOREIGN KEY (modelId) REFERENCES model(id),
-    FOREIGN KEY (companyId) REFERENCES manufacturer(id),
+    modelID integer NOT NULL,
+    companyID integer NOT NULL,
+    FOREIGN KEY (modelID) REFERENCES models(id),
+    FOREIGN KEY (companyID) REFERENCES manufacturers(id),
     PRIMARY KEY (id)
 )
 
 # --- !Downs
 
-DROP TABLE product;
+DROP TABLE products;
 DROP SEQUENCE product_id_seq;
-

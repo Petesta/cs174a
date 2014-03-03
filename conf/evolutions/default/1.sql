@@ -19,4 +19,3 @@ CREATE TABLE customers (
 
 DROP TABLE customers;
 DROP SEQUENCE customer_id_seq;
-

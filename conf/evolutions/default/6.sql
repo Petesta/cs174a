@@ -1,23 +1,23 @@
-# CatalogProduct Schema
+# CatalogProducts Schema
 
 # --- !Ups
 
 CREATE SEQUENCE cat_product_id_seq;
-CREATE TABLE cat_product (
+CREATE TABLE catalogProducts (
     id integer NOT NULL DEFAULT nextval('cat_product_id_seq'),
     stockNumber varchar(5) NOT NULL,
-    productId integer NOT NULL,
-    companyId integer NOT NULL,
-    modelId integer NOT NULL,
-    categoryId integer NOT NULL,
-    FOREIGN KEY (productId) REFERENCES product(id),
-    FOREIGN KEY (companyId) REFERENCES manufacturer(id),
-    FOREIGN KEY (modelId) REFERENCES model(id),
-    FOREIGN KEY (categoryId) REFERENCES category(id),
+    productID integer NOT NULL,
+    companyID integer NOT NULL,
+    modelID integer NOT NULL,
+    categoryID integer NOT NULL,
+    FOREIGN KEY (productID) REFERENCES products(id),
+    FOREIGN KEY (companyID) REFERENCES manufacturers(id),
+    FOREIGN KEY (modelID) REFERENCES models(id),
+    FOREIGN KEY (categoryID) REFERENCES category(id),
     PRIMARY KEY (id)
 )
 
 # --- !Downs
 
-DROP TABLE cat_product;
+DROP TABLE catalogProducts;
 DROP SEQUENCE cat_product_id_seq;

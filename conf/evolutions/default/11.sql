@@ -1,17 +1,17 @@
-# Cart Schema
+# Carts Schema
 
 # --- !Ups
 
 CREATE SEQUENCE cart_id_seq;
-CREATE TABLE cart (
+CREATE TABLE carts (
     id integer NOT NULL DEFAULT nextval('cart_id_seq'),
     createdAt date NOT NULL,
-    customerId integer NOT NULL,
-    FOREIGN KEY (customerId) REFERENCES customers(id),
+    customerID integer NOT NULL,
+    FOREIGN KEY (customerID) REFERENCES customers(id),
     PRIMARY KEY (id)
 )
 
 # --- !Downs
 
-DROP TABLE cart;
+DROP TABLE carts;
 DROP SEQUENCE cart_id_seq;

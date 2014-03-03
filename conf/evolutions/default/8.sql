@@ -1,9 +1,9 @@
-# Accessories Schema
+# Accessory Schema
 
 # --- !Ups
 
 CREATE SEQUENCE accessories_id_seq;
-CREATE TABLE accessories (
+CREATE TABLE accessory (
     id integer NOT NULL DEFAULT nextval('accessories_id_seq'),
     productID integer NOT NULL,
     accessoryID integer NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE accessories (
 
 # --- !Downs
 
-DROP TABLE accessories;
+DROP TABLE accessory;
 DROP SEQUENCE accessories_id_seq;

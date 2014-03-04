@@ -12,7 +12,7 @@ object DescriptionsController extends Controller {
   val descriptionForm  = Form(
     tuple(
     "name" -> nonEmptyText,
-    "value" -> nonEmptyTex
+    "value" -> nonEmptyText
     )
   )
 

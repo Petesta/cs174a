@@ -6,12 +6,8 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.data.validation.Constraints._
 
-import models.Model
+import models.Order
 
-object ModelsController extends Controller {
-  val modelForm = Form(
-    "modelNumber" -> nonEmptyText
-  )
-
-  def newModel = TODO
+object OrdersController extends Controller {
+  def newOrder = TODO
 }

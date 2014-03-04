@@ -9,12 +9,8 @@ import play.api.data.validation.Constraints._
 import models.Product
 
 object ProductsController extends Controller {
-  val productForm = Form(
-    "stockNumber" -> nonEmptyText
-  )
 
   def getProducts = Action {
     Ok(views.html.managers.sales(Product.all()))
   }
-
 }

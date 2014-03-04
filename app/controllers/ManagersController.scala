@@ -5,10 +5,11 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.data.validation.Constraints._
-
+import models.Product
 
 object ManagersController extends Controller {
 
+  /*
   def getSalesPerProduct = Action {
       Ok(views.html.managers.sales())
   }
@@ -27,5 +28,5 @@ object ManagersController extends Controller {
 
   def setItemPrice = Action {
       Ok(views.html.managers.sales())
-  }
+  }*/
 }

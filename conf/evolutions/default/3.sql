@@ -9,7 +9,9 @@ CREATE TABLE models (
     companyID integer NOT NULL,
     FOREIGN KEY (companyID) REFERENCES manufacturers(id),
     PRIMARY KEY (id)
-)
+);
+
+INSERT INTO models(modelNumber, companyID) VALUES ('model1234', 1);
 
 # --- !Downs
 

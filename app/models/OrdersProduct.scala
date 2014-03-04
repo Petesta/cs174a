@@ -7,6 +7,8 @@ import java.util.{Date}
 
 import play.api.db._
 import play.api.Play.current
+import java.math.{BigDecimal}
+
 
 case class OrdersProduct(id: Int, qty: Int, priceBuy: BigDecimal, catProductID: Int, ordersID: Int)
 
@@ -21,7 +23,7 @@ object OrdersProduct {
     }
   }
 
-  def create(qty: Int, priceBuy: BigDecimal) {
+  /*def create(qty: Int, priceBuy: BigDecimal) {
     // TODO: We'll probably need to get FOREIGN KEY values for customerID and ordersID
     DB.withConnection { implicit c =>
       SQL("insert into ordersProducts(qty, priceBuy, catProductID, ordersID) values ({qty, priceBuy, catProductID, ordersID})").on(
@@ -31,5 +33,5 @@ object OrdersProduct {
         'ordersID -> ordersID
       ).executeInsert()
     }
-  }
+  }*/
 }

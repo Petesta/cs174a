@@ -16,11 +16,11 @@ object Category {
     }
   }
 
-  def create(name: String) {
+  /*def create(name: String) {
     DB.withConnection { implicit c =>
       SQL("insert into category(name) values ({name})").on(
         'name -> name
       ).executeInsert()
     }
-  }
+  }*/
 }

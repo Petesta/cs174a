@@ -19,7 +19,7 @@ object Cart {
     }
   }
 
-  def create() {
+  /*def create() {
     // TODO: We'll probably need to get a FOREIGN KEY value for customerID and create a Date
     DB.withConnection { implicit c =>
       SQL("insert into carts(createdAt, customerID) values ({createdAt, customerID})").on(
@@ -27,5 +27,5 @@ object Cart {
         'customerID -> customerID
       ).executeInsert()
     }
-  }
+  }*/
 }

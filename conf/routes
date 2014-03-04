@@ -3,9 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.CustomersController.newCustomer
+GET     /                           controllers.ProductsController.getProducts
 
-POST    /customers                  controllers.CustomersController.createCustomer
+GET     /products                   controllers.ProductsController.getProducts
+
+#POST    /customers                  controllers.CustomersController.createCustomer
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
@@ -13,16 +15,16 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 ## Print monthly summary of sales
 
 # The amount of sales per product
-GET     /managers/sales/product              controllers.ManagersController.getSalesPerProduct
+#GET     /managers/sales/product              controllers.ManagersController.getSalesPerProduct
 
 # The amount of sales per category
-GET     /managers/sales/category             controllers.ManagersController.getSalesPerCategory
+#GET     /managers/sales/category             controllers.ManagersController.getSalesPerCategory
 
 # The customer who did the most purchase
-GET     /managers/sales/customer             controllers.ManagersController.getSalesPerCustomer
+#GET     /managers/sales/customer             controllers.ManagersController.getSalesPerCustomer
 
 # Customer status adjustment according to the sales in the month
-PUT    /managers/customers/status/update     controllers.ManagersController.updateCustomerStatus
+#PUT    /managers/customers/status/update     controllers.ManagersController.updateCustomerStatus
 
 # Change the price of an item.
-PUT    /managers/items/price/{amount}        controllers.ManagersController.setItemPrice
+#PUT    /managers/items/price/{amount}        controllers.ManagersController.setItemPrice

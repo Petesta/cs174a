@@ -21,10 +21,11 @@ object CustomersController extends Controller {
     )
   )
 
-  def newCustomer = Action {
+  /*def newCustomer = Action {
     Ok(views.html.customers.newCustomer(customerForm))
-  }
+  }*/
 
+  /*
   def createCustomer = Action { implicit request =>
     customerForm.bindFromRequest.fold(
       error => BadRequest(views.html.customers.newCustomer(customerForm)),
@@ -35,5 +36,5 @@ object CustomersController extends Controller {
         }
       }
     ) 
-  }
+  }*/
 }

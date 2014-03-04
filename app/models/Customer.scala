@@ -22,7 +22,7 @@ object Customer {
     }
   }
 
-  def create(firstName: String, lastName: String, email: String, password: String, street: String, zip: String, city: String) {
+  /*def create(firstName: String, lastName: String, email: String, password: String, street: String, zip: String, city: String) {
     DB.withConnection { implicit c =>
       SQL("insert into customers(firstName, lastName, email, password, street, zip, city) values ({firstName, lastName, email, password, street, zip, city})").on(
         'firstName -> firstName,
@@ -33,5 +33,5 @@ object Customer {
         'zip -> zip,
         'city -> city).executeInsert()
     }
-  }
+  }*/
 }

@@ -20,7 +20,7 @@ object CartProduct {
     }
   }
 
-  def create {
+  /*def create {
     // TODO: We'll probably need to get FOREIGN KEY values for catProductID and cartID
     DB.withConnection { implicit c =>
       SQL("insert into cartProducts(qty, catProductID, cartID) values ({qty, catProductID, cartID})").on(
@@ -29,5 +29,5 @@ object CartProduct {
         'cartID -> cartID
       ).executeInsert()
     }
-  }
+  }*/
 }

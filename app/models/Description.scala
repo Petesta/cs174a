@@ -18,7 +18,7 @@ object Description {
     }
   }
 
-  def create(name: String, value: String) {
+  /*def create(name: String, value: String) {
     // TODO: We'll probably need to get a FOREIGN KEY value for catProductID
     DB.withConnection { implicit c =>
       SQL("insert into descriptions(name, value) values ({name, value})").on(
@@ -26,5 +26,5 @@ object Description {
         'value -> value
       ).executeInsert()
     }
-  }
+  }*/
 }

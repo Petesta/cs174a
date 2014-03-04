@@ -18,7 +18,7 @@ object Order {
     }
   }
 
-  def create() {
+  /*def create() {
     // TODO: We'll probably need to get a FOREIGN KEY value for customerID
     DB.withConnection { implicit c =>
       SQL("insert into orders(createdAt, customerID) values ({createdAt, customerID})").on(
@@ -26,5 +26,5 @@ object Order {
         'customerID -> customerID
       ).executeInsert()
     }
-  }
+  }*/
 }

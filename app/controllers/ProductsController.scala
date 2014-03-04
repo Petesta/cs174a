@@ -13,5 +13,8 @@ object ProductsController extends Controller {
     "stockNumber" -> nonEmptyText
   )
 
-  def newProduct = TODO
+  def getProducts = Action {
+    Ok(views.html.managers.sales(Product.all()))
+  }
+
 }

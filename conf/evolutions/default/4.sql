@@ -11,7 +11,9 @@ CREATE TABLE products (
     FOREIGN KEY (modelID) REFERENCES models(id),
     FOREIGN KEY (companyID) REFERENCES manufacturers(id),
     PRIMARY KEY (id)
-)
+);
+
+INSERT INTO products (stockNumber, modelID, companyID) VALUES ('s1234', 1, 1);
 
 # --- !Downs
 

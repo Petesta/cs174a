@@ -1,7 +1,12 @@
+@(products: List[Product])
+
 @import helper._
 
 @main("Sales") {
   <h1>Sales</h1>
 
+    @products.map { product =>
+        @product.stockNumber
+    }
 
 }

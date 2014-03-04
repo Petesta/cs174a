@@ -12,6 +12,7 @@ CREATE TABLE customers (
     street varchar(10) NOT NULL,
     zip varchar(10) NOT NULL,
     city varchar(10) NOT NULL,
+    status varchar(10) NOT NULL,
     PRIMARY KEY (id)
 )
 

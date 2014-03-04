@@ -18,12 +18,16 @@ object Product {
     }
   }
 
-  def create(stockNumber: String) {
+  def all(): List[Product] = DB.withConnection { implicit c =>
+      SQL("select * from products").as(product *)
+  }
+
+  /*def create(stockNumber: String) {
     // TODO: We'll probably need to get a FOREIGN KEY value for modelID and companyID
     DB.withConnection { implicit c =>
       SQL("insert into products(stockNumber) values ({stockNumber})").on(
         'stockNumber -> stockNumber
       ).executeInsert()
     }
-  }
+  }*/
 }

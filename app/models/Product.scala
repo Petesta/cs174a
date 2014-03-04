@@ -6,17 +6,19 @@ import anorm.SqlParser._
 import play.api.db._
 import play.api.Play.current
 
-case class Product(id: Int, stockNumber: String, companyID: Int, modelID: Int, categoryID: Int, description: String)
+
+case class Product(id: Int, stockNumber: String, price: Double, companyID: Int, modelID: Int, categoryID: Int, description: String)
 
 object Product {
   val product = {
     get[Int]("id") ~
     get[String]("stockNumber") ~
+    get[Double]("price") ~
     get[Int]("companyID") ~
     get[Int]("modelID") ~
     get[Int]("categoryID") ~
     get[String]("description") map {
-      case id~stockNumber~companyID~modelID~categoryID~description => Product(id, stockNumber, companyID, modelID, categoryID, description)
+      case id~stockNumber~price~companyID~modelID~categoryID~description => Product(id, stockNumber, price, companyID, modelID, categoryID, description)
     }
   }
 
@@ -24,12 +26,16 @@ object Product {
     SQL("select * from products").as(product *)
   }
 
-  /*def create(stockNumber: String) {
-    // TODO: We'll probably need to get a FOREIGN KEY value for productID, companyID, modelID, and categoryID
+  def getById(id: Int): List[Product] = DB.withConnection { implicit c =>
+    SQL("select * from products where id = {id} LIMIT 1").on('id -> id).as(product *)
+  }
+
+  def update(price: Double) {
     DB.withConnection { implicit c =>
-      SQL("insert into catalogProducts(stockNumber) values ({stockNumber})").on(
-        'stockNumber -> stockNumber
-      ).executeInsert()
+      SQL("update products set price={price}").on(
+        'price -> price
+      ).executeUpdate()
     }
-  }*/
+  }
+
 }

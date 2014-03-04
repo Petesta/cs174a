@@ -1,0 +1,19 @@
+@(products: List[Product], productForm: Form[Double])
+
+@import helper._
+
+@products.map { product =>
+    <p>
+        <h1>@product.stockNumber</h1><br>
+        <ul>
+            <li>Price: @product.price</li>
+        </ul>
+    </p>
+
+    @form(routes.ProductsController.update) {
+
+        @inputText(productForm("price"))
+        <input type="submit" value="Update">
+
+    }
+}

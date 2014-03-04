@@ -3,9 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.ProductsController.getProducts
+GET     /                           controllers.ProductsController.list
 
-GET     /products                   controllers.ProductsController.getProducts
+GET     /products                   controllers.ProductsController.list
+GET     /products/:id               controllers.ProductsController.detail(id: Int)
+POST    /products/update            controllers.ProductsController.update()
 
 #POST    /customers                  controllers.CustomersController.createCustomer
 

@@ -9,7 +9,14 @@ CREATE TABLE manufacturers (
     PRIMARY KEY (id)
 );
 
-INSERT INTO manufacturers(companyName) VALUES ('company123');
+INSERT INTO manufacturers(companyName) VALUES ('HP');
+INSERT INTO manufacturers(companyName) VALUES ('Dell');
+INSERT INTO manufacturers(companyName) VALUES ('Emachine');
+INSERT INTO manufacturers(companyName) VALUES ('Envision');
+INSERT INTO manufacturers(companyName) VALUES ('Samsung');
+INSERT INTO manufacturers(companyName) VALUES ('Symantec');
+INSERT INTO manufacturers(companyName) VALUES ('McAfee');
+INSERT INTO manufacturers(companyName) VALUES ('Cannon');
 
 # --- !Downs
 

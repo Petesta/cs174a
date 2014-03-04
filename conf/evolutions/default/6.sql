@@ -14,7 +14,18 @@ CREATE TABLE products (
     FOREIGN KEY (modelID) REFERENCES models(id),
     FOREIGN KEY (categoryID) REFERENCES category(id),
     PRIMARY KEY (id)
-)
+);
+
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('101', 1, 1, 1, 'Processor speed: 3.33Ghz, RAM size: 512Mb, Hard disk size: 100Gb, Display size: 17"'); 
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('201', 2, 2, 2, 'Processor speed: 2.53Ghz, RAM size: 256Mb, Hard disk size: 80Gb, OS: none');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('202', 3, 3, 2, 'Processor speed: 2.9Ghz, RAM size: 512Mb, Hard disk size: 80Gb');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('301', 4, 4, 3, 'Size: 17", Weight: 25lb.');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('302', 5, 5, 3, 'Size: 17", Weight: 9.6lb.');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('401', 6, 6, 4, 'Required disk size: 128MB, Required RAM size: 64MB');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('402', 7, 6, 4, 'Required disk size:i 128MB, Required RAM size: 64MB');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('501', 1, 7, 5, 'Resolution: 1200dpi, Sheet capacity: 500, Weight: 0.4lb.');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('601', 1, 8, 6, 'Resolution: 3.1Mp, Max zoom: 5 times, Weight: 24.7lb.');
+INSERT INTO products(stockNumber, companyID, modelID, categoryID, description) VALUES ('602', 8, 8, 6, 'Resolution: 3.1Mp, Max zoom: 5 times, Weight: 24.7lb.');
 
 # --- !Downs
 

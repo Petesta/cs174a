@@ -1,17 +1,20 @@
-# Orders Schema
+# OrdersProducts Schema
 
 # --- !Ups
 
-CREATE SEQUENCE orders_id_seq;
-CREATE TABLE orders (
-    id integer NOT NULL DEFAULT nextval('orders_id_seq'),
-    createdAt date NOT NULL,
-    customerID integer NOT NULL,
-    FOREIGN KEY (customerID) REFERENCES customers(id),
+CREATE SEQUENCE orders_products_id_seq;
+CREATE TABLE ordersProducts (
+    id integer NOT NULL DEFAULT nextval('orders_products_id_seq'),
+    qty integer NOT NULL DEFAULT 1,
+    priceBuy decimal NOT NULL,
+    productID integer NOT NULL,
+    ordersID integer NOT NULL,
+    FOREIGN KEY (productID) REFERENCES products(id),
+    FOREIGN KEY (ordersID) REFERENCES orders(id),
     PRIMARY KEY (id)
 )
 
 # --- !Downs
 
-DROP TABLE orders;
-DROP SEQUENCE orders_id_seq;
+DROP TABLE ordersProducts;
+DROP SEQUENCE orders_products_id_seq;

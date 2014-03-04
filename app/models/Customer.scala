@@ -17,7 +17,7 @@ object Customer {
     get[String]("password") ~
     get[String]("street") ~
     get[String]("zip") ~
-    get[String]("city") 
+    get[String]("city") ~
     get[String]("status") map {
       case id~firstName~lastName~email~password~street~zip~city~status => Customer(id, firstName, lastName, email, password, street, zip, city, status)
     }

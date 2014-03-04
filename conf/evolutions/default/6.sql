@@ -1,9 +1,9 @@
-# Product Schema
+# Products Schema
 
 # --- !Ups
 
 CREATE SEQUENCE cat_product_id_seq;
-CREATE TABLE product (
+CREATE TABLE products (
     id integer NOT NULL DEFAULT nextval('cat_product_id_seq'),
     stockNumber varchar(5) NOT NULL,
     companyID integer NOT NULL,

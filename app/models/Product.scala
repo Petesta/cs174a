@@ -21,7 +21,7 @@ object Product {
   }
 
   def all(): List[Product] = DB.withConnection { implicit c =>
-    SQL("select * from product").as(product *)
+    SQL("select * from products").as(product *)
   }
 
   /*def create(stockNumber: String) {

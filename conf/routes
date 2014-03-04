@@ -13,16 +13,16 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 ## Print monthly summary of sales
 
 # The amount of sales per product
-GET     /manager/sales/product              controllers.ManagerController.getSalesPerProduct
+GET     /managers/sales/product              controllers.ManagersController.getSalesPerProduct
 
 # The amount of sales per category
-GET     /manager/sales/category             controllers.ManagerController.getSalesPerCategory
+GET     /managers/sales/category             controllers.ManagersController.getSalesPerCategory
 
 # The customer who did the most purchase
-GET     /manager/sales/customer             controllers.ManagerController.getSalesPerCustomer
+GET     /managers/sales/customer             controllers.ManagersController.getSalesPerCustomer
 
 # Customer status adjustment according to the sales in the month
-PUT    /manager/customers/status/update     controllers.ManagerController.updateCustomerStatus
+PUT    /managers/customers/status/update     controllers.ManagersController.updateCustomerStatus
 
 # Change the price of an item.
-PUT    /manager/items/price/{amount}        controllers.ManagerController.setItemPrice
+PUT    /managers/items/price/{amount}        controllers.ManagersController.setItemPrice

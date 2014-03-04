@@ -20,7 +20,7 @@ object Accessory {
   def create() {
     // TODO: We'll probably need to get FOREIGN KEY values productID and accessoryID
     DB.withConnection { implicit c =>
-      SQL("insert into accessory (productID, accessoryID) values ({productID, accessoryID})").on(
+      SQL("insert into accessory(productID, accessoryID) values ({productID, accessoryID})").on(
         'productID -> productID,
         'accessoryID -> accessoryID
       ).executeInsert()

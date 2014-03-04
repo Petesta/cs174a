@@ -3,6 +3,7 @@ package models
 import anorm._
 import anorm.SqlParser._
 
+import java.util.{Date}
 import play.api.db._
 import play.api.Play.current
 
@@ -20,7 +21,7 @@ object Order {
   def create() {
     // TODO: We'll probably need to get a FOREIGN KEY value for customerID
     DB.withConnection { implicit c =>
-      SQL("insert into orders (createdAt, customerID) values ({createdAt, customerID})").on(
+      SQL("insert into orders(createdAt, customerID) values ({createdAt, customerID})").on(
         'createdAt -> createdAt,
         'customerID -> customerID
       ).executeInsert()

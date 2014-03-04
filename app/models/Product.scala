@@ -21,7 +21,7 @@ object Product {
   def create(stockNumber: String) {
     // TODO: We'll probably need to get a FOREIGN KEY value for modelID and companyID
     DB.withConnection { implicit c =>
-      SQL("insert into products (stockNumber) values ({stockNumber})").on(
+      SQL("insert into products(stockNumber) values ({stockNumber})").on(
         'stockNumber -> stockNumber
       ).executeInsert()
     }

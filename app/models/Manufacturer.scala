@@ -18,7 +18,7 @@ object Manufacturer {
 
   def create(companyName: String) {
     DB.withConnection { implicit c =>
-      SQL("insert into manufacturers (companyName) values ({companyName})").on(
+      SQL("insert into manufacturers(companyName) values ({companyName})").on(
         'companyName -> companyName
       ).executeInsert()
     }

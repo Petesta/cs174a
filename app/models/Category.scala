@@ -18,7 +18,7 @@ object Category {
 
   def create(name: String) {
     DB.withConnection { implicit c =>
-      SQL("insert into category (name) values ({name})").on(
+      SQL("insert into category(name) values ({name})").on(
         'name -> name
       ).executeInsert()
     }

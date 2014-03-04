@@ -20,7 +20,7 @@ object Model {
   def create(modelNumber: String) {
     // TODO: We'll probably need to get a FOREIGN KEY value for companyID
     DB.withConnection { implicit c =>
-      SQL("insert into models (modelNumber) values ({modelNumber})").on(
+      SQL("insert into models(modelNumber) values ({modelNumber})").on(
         'modelNumber -> modelNumber
       ).executeInsert()
     }

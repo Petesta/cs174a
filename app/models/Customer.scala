@@ -6,20 +6,19 @@ import anorm.SqlParser._
 import play.api.db._
 import play.api.Play.current
 
-case class Customer(id: Int, firstName: String, lastName: String, email: String, password: String, street: String, zip: String, city: String, status: String)
+case class Customer(id: Int, depotID: String, firstName: String, lastName: String, email: String, password: String, street: String, status: String)
 
 object Customer {
   val customer = {
     get[Int]("id") ~
+    get[String]("depotID") ~
     get[String]("firstName") ~
     get[String]("lastName") ~
     get[String]("email") ~
     get[String]("password") ~
     get[String]("street") ~
-    get[String]("zip") ~
-    get[String]("city") ~
     get[String]("status") map {
-      case id~firstName~lastName~email~password~street~zip~city~status => Customer(id, firstName, lastName, email, password, street, zip, city, status)
+      case id~depotID~firstName~lastName~email~password~street~status => Customer(id, depotID, firstName, lastName, email, password, street, status)
     }
   }
 

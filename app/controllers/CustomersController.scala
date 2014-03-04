@@ -15,9 +15,7 @@ object CustomersController extends Controller {
       "lastName" -> nonEmptyText(maxLength = 10),
       "email" -> email,
       "password" -> nonEmptyText(minLength = 5, maxLength = 10),
-      "street" -> nonEmptyText(maxLength = 10),
-      "zip" -> nonEmptyText(maxLength = 10),
-      "city" -> nonEmptyText(maxLength = 10)
+      "street" -> nonEmptyText(maxLength = 10)
     )
   )
 

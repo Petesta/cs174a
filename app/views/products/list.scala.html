@@ -1,5 +1,8 @@
 @(products: List[Product])
 
-@products.map { product =>
-    <a href="/products/@product.id">@product.stockNumber</a>
+@main("Product List") {
+    <h1>Product List</h1>
+    @products.map { product =>
+        <a href="/products/@product.id">@product.stockNumber</a>
+    }
 }

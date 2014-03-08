@@ -5,15 +5,16 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.data.validation.Constraints._
-import models.Product
+import models.OrdersProduct
 
 object ManagersController extends Controller {
 
-  /*
+
   def getSalesPerProduct = Action {
-      Ok(views.html.managers.sales())
+      Ok(views.html.managers.sales(OrdersProduct.getMonthlySalesPerProduct(1)))
   }
 
+  /*
   def getSalesPerCategory = Action {
       Ok(views.html.managers.sales())
   }

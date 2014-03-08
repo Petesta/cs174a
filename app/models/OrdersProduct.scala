@@ -10,18 +10,23 @@ import play.api.Play.current
 import java.math.{BigDecimal}
 
 
-case class OrdersProduct(id: Int, qty: Int, priceBuy: BigDecimal, catProductID: Int, ordersID: Int)
+case class OrdersProduct(id: Int, qty: Int, priceBuy: BigDecimal, productID: Int, ordersID: Int)
 
 object OrdersProduct {
   val ordersProduct = {
     get[Int]("id") ~
     get[Int]("qty") ~
     get[BigDecimal]("priceBuy") ~
-    get[Int]("catProductID") ~
+    get[Int]("productID") ~
     get[Int]("ordersID") map {
-      case id~qty~priceBuy~catProductID~ordersID => OrdersProduct(id, qty, priceBuy, catProductID, ordersID)
+      case id~qty~priceBuy~productID~ordersID => OrdersProduct(id, qty, priceBuy, productID, ordersID)
     }
   }
+
+  def getMonthlySalesPerProduct(id: Int): List[OrdersProduct] = DB.withConnection { implicit c =>
+    SQL("select * from ordersProducts op inner join orders o on op.ordersID = o.id where productID = {id} order by o.createdAt desc").on('id -> id).as(ordersProduct *)
+  }
+
 
   /*def create(qty: Int, priceBuy: BigDecimal) {
     // TODO: We'll probably need to get FOREIGN KEY values for customerID and ordersID

@@ -14,11 +14,12 @@ object ManagersController extends Controller {
       Ok(views.html.managers.sales(OrdersProduct.getMonthlySalesPerProduct(1)))
   }
 
-  /*
+
   def getSalesPerCategory = Action {
-      Ok(views.html.managers.sales())
+    Ok(views.html.managers.sales(OrdersProduct.getMonthlySalesPerCategory(1)))
   }
 
+  /*
   def getSalesPerCustomer = Action {
       Ok(views.html.managers.sales())
   }

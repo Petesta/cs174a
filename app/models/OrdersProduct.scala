@@ -24,9 +24,19 @@ object OrdersProduct {
   }
 
   def getMonthlySalesPerProduct(id: Int): List[OrdersProduct] = DB.withConnection { implicit c =>
-    SQL("select * from ordersProducts op inner join orders o on op.ordersID = o.id where productID = {id} order by o.createdAt desc").on('id -> id).as(ordersProduct *)
+    SQL("select * from ordersProducts op " +
+      "inner join orders o on op.ordersID = o.id " +
+      "where op.productID = {id} " +
+      "order by o.createdAt desc").on('id -> id).as(ordersProduct *)
   }
 
+  def getMonthlySalesPerCategory(id: Int): List[OrdersProduct] = DB.withConnection { implicit c =>
+    SQL("select * from ordersProducts op " +
+      "inner join orders o on op.ordersID = o.id " +
+      "inner join products p on op.productID = p.id " +
+      "inner join category c on p.categoryID = {id} " +
+      "order by o.createdAt desc").on('id -> id).as(ordersProduct *)
+  }
 
   /*def create(qty: Int, priceBuy: BigDecimal) {
     // TODO: We'll probably need to get FOREIGN KEY values for customerID and ordersID

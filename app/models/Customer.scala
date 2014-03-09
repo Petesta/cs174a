@@ -3,6 +3,8 @@ package models
 import anorm._
 import anorm.SqlParser._
 
+import java.util.{Date}
+
 import play.api.db._
 import play.api.Play.current
 
@@ -22,16 +24,25 @@ object Customer {
     }
   }
 
-  /*def create(firstName: String, lastName: String, email: String, password: String, street: String, zip: String, city: String) {
+  def create(depotID: String, firstName: String, lastName: String, email: String, password: String, street: String, status: String) {
     DB.withConnection { implicit c =>
-      SQL("insert into customers(firstName, lastName, email, password, street, zip, city) values ({firstName, lastName, email, password, street, zip, city})").on(
+      SQL("insert into customers(depotID, firstName, lastName, email, password, street, status) values ({depotID}, {firstName}, {lastName}, {email}, {password}, {street}, {status})").on(
+        'depotID -> depotID,
         'firstName -> firstName,
         'lastName -> lastName,
         'email -> email,
         'password -> password,
         'street -> street,
-        'zip -> zip,
-        'city -> city).executeInsert()
+        'status -> status).executeInsert()
+
+      val firstRow = SQL("select id from customers order by id desc limit 1").apply().head
+      val customerID = firstRow[Int]("id")
+      println(customerID)
+
+      SQL("insert into carts(createdAt, customerID) values ({createdAt}, {customerID})").on(
+        'createdAt -> new Date(),
+        'customerID -> customerID
+      ).executeInsert()
     }
-  }*/
+  }
 }

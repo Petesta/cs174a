@@ -11,28 +11,29 @@ import models.Customer
 object CustomersController extends Controller {
   val customerForm = Form(
     tuple(
-      "firstName" -> nonEmptyText(maxLength = 10),
-      "lastName" -> nonEmptyText(maxLength = 10),
+      "depotID" -> nonEmptyText,
+      "firstName" -> nonEmptyText,
+      "lastName" -> nonEmptyText,
       "email" -> email,
-      "password" -> nonEmptyText(minLength = 5, maxLength = 10),
-      "street" -> nonEmptyText(maxLength = 10)
+      "password" -> nonEmptyText,
+      "street" -> nonEmptyText,
+      "status" -> nonEmptyText
     )
   )
 
-  /*def newCustomer = Action {
+  def newCustomer = Action {
     Ok(views.html.customers.newCustomer(customerForm))
-  }*/
+  }
 
-  /*
   def createCustomer = Action { implicit request =>
     customerForm.bindFromRequest.fold(
-      error => BadRequest(views.html.customers.newCustomer(customerForm)),
+      errors => BadRequest(views.html.customers.newCustomer(customerForm)),
       {
-        case (firstName, lastName, email, password, street, zip, city) => {
-          Customer.create(firstName, lastName, email, password, street, zip, city)
-          Redirect(routes.CustomersController.newCustomer)
+        case (depotID, firstName, lastName, email, password, street, status) => {
+          Customer.create(depotID, firstName, lastName, email, password, street, status)
+          Redirect(routes.ManagersController.getSalesPerCategory)
         }
       }
     ) 
-  }*/
+  }
 }

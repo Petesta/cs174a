@@ -22,7 +22,7 @@ object CustomersController extends Controller {
   )
 
   def newCustomer = Action {
-    Ok(views.html.customers.newCustomer(customerForm))
+    Ok(views.html.customers.newCustomer(customerForm)).withCookies(Cookie("id", Customer.findCustomerID()))
   }
 
   def createCustomer = Action { implicit request =>

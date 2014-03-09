@@ -9,6 +9,9 @@ GET     /products                   controllers.ProductsController.list
 GET     /products/:id               controllers.ProductsController.detail(id: Int)
 POST    /products/update            controllers.ProductsController.update()
 
+
+GET     /cartProducts               controllers.CartProductsController.addProducts
+
 #POST    /customers                  controllers.CustomersController.createCustomer
 GET     /customers                  controllers.CustomersController.newCustomer
 

@@ -7,27 +7,29 @@ import java.util.{Date}
 
 import play.api.db._
 import play.api.Play.current
+import play.mvc._
 
-case class CartProduct(id: Int, qty: Int, catProductID: Int, cartID: Int)
+case class CartProduct(id: Int, qty: Int, productID: Int, cartID: Int)
 
 object CartProduct {
   val cartProduct = {
     get[Int]("id") ~
     get[Int]("qty") ~
-    get[Int]("catProductID") ~
+    get[Int]("productID") ~
     get[Int]("cartID") map {
-      case id~qty~catProductID~cartID => CartProduct(id, qty, catProductID, cartID)
+      case id~qty~productID~cartID => CartProduct(id, qty, productID, cartID)
     }
   }
 
-  /*def create {
-    // TODO: We'll probably need to get FOREIGN KEY values for catProductID and cartID
+  def insertProduct(qty: Int, productID: Int, cartID: Int) {
     DB.withConnection { implicit c =>
-      SQL("insert into cartProducts(qty, catProductID, cartID) values ({qty, catProductID, cartID})").on(
+    //val blah = ??? //Http.Request.current.cookies.get("id")
+    //val cartID = 1
+      SQL("insert into cartProducts(qty, productID, cartID) values ({qty}, {productID}, {cartID})").on(
         'qty -> qty,
-        'catProductID -> catProductID,
+        'productID -> productID,
         'cartID -> cartID
       ).executeInsert()
     }
-  }*/
+  }
 }

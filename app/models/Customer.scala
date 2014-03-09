@@ -45,4 +45,9 @@ object Customer {
       ).executeInsert()
     }
   }
+
+  def findCustomerID(): String = DB.withConnection { implicit c =>
+    val row = SQL("select id from customers order by id desc limit 1").apply().head
+    row[Int]("id").toString
+  }
 }

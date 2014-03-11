@@ -24,6 +24,10 @@ object ProductsController extends Controller {
     Ok(views.html.products.detail(Product.getById(id), productForm))
   }
 
+  def manage(id: Int) = Action {
+    Ok(views.html.products.manage(Product.getById(id), productForm))
+  }
+
   def update = Action { implicit request =>
     productForm.bindFromRequest.fold(
       //error => BadRequest(views.html.products.detail(Product.getById(id), productForm)),

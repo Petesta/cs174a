@@ -2,15 +2,21 @@
 
 @import helper._
 
-@main("Product Detail") {
+@main("Manage Product") {
     @products.map { product =>
         <p>
             <h1>ID: @product.id</h1><br>
-            <a href="@routes.CartProductsController.addProducts">Add</a> to chart
             <ul>
-                <li>Stock#: @product.stockNumber</li>
+                <li>Stock: #@product.stockNumber</li>
                 <li>Price: @product.price</li>
             </ul>
         </p>
+
+        @form(routes.ProductsController.update) {
+
+            @inputText(productForm("price"))
+            <input type="submit" value="Update">
+
+        }
     }
 }

@@ -18,6 +18,12 @@ object Order {
     }
   }
 
+  def getTotalPurchase(id: Int): List[Order] = DB.withConnection { implicit c =>
+    SQL("select * from orders o " +
+      "inner join ordersProducts op on op.ordersID = o.id " +
+      "where o.customerID = {id} ").on('id -> id).as(order *)
+  }
+
 
   /*def create() {
     // TODO: We'll probably need to get a FOREIGN KEY value for customerID

@@ -22,6 +22,16 @@ object Customer {
     }
   }
 
+  def updateStatus(id: Int, status: String) {
+    DB.withConnection { implicit c =>
+      SQL("update customers set status={status} where id = {id}").on(
+        'status -> status,
+        'id -> id
+      ).executeUpdate()
+    }
+  }
+
+
   /*def create(firstName: String, lastName: String, email: String, password: String, street: String, zip: String, city: String) {
     DB.withConnection { implicit c =>
       SQL("insert into customers(firstName, lastName, email, password, street, zip, city) values ({firstName, lastName, email, password, street, zip, city})").on(

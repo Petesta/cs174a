@@ -23,10 +23,8 @@ GET     /manager/sales/product              controllers.ManagersController.getSa
 GET     /manager/sales/category             controllers.ManagersController.getSalesPerCategory
 
 # The customer who did the most purchase
-#GET     /manager/sales/customer             controllers.ManagersController.getSalesPerCustomer
+#GET     /manager/sales/customer             controllers.ManagersController.getSalesFromCustomerWithMostPurchases
 
 # Customer status adjustment according to the sales in the month
 #PUT    /manager/customers/status/update     controllers.ManagersController.updateCustomerStatus
 
-# Change the price of an item.
-#PUT    /manager/items/price/{amount}        controllers.ManagersController.setItemPrice

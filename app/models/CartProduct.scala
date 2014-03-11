@@ -23,13 +23,25 @@ object CartProduct {
 
   def insertProduct(qty: Int, productID: Int, cartID: Int) {
     DB.withConnection { implicit c =>
-    //val blah = ??? //Http.Request.current.cookies.get("id")
-    //val cartID = 1
       SQL("insert into cartProducts(qty, productID, cartID) values ({qty}, {productID}, {cartID})").on(
         'qty -> qty,
         'productID -> productID,
         'cartID -> cartID
       ).executeInsert()
     }
+  }
+
+  def deleteProduct(cartProductID: Int, cartID: Int) {
+    DB.withConnection { implicit c =>
+      SQL("delete from cartProducts where id = {cartProductID} and cartID = {cartID}").on(
+        'cartProductID -> cartProductID,
+        'cartID -> cartID
+        ).executeUpdate
+    }
+  }
+
+  def listAllProducts(cartID: Int): List[CartProduct] = DB.withConnection { implicit c =>
+    SQL("select * from cartProducts where cartID = {cartID}").on(
+      'cartID -> cartID).as(cartProduct *)
   }
 }

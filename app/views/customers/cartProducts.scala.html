@@ -1,0 +1,17 @@
+@(cartProducts: List[CartProduct])
+
+@import helper._
+
+@main("Products in cart") {
+    <h1>@cartProducts.size Product(s)</h1>
+    <ul>
+        @cartProducts.map { cartProduct =>
+            <li>
+                @cartProduct.productID
+                @form(routes.CartProductsController.deleteProducts(cartProduct.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+}

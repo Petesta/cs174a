@@ -32,10 +32,34 @@ object CartProductsController extends Controller {
           }
         )
       }
+
       case None => NotFound // This is just a hack
     }
   }
 
-  def newCartProduct = TODO
-  def createCartProduct = TODO
+  def cartProducts = Action { implicit request =>
+    val cartOption = request.cookies.get("id")
+
+    cartOption match {
+      case Some(value) => {
+        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.value.toInt)))
+      }
+
+      case None => NotFound // This is just a hack
+    }
+  }
+
+  def deleteProducts(id: Int) = Action { implicit request =>
+    val cartOption = request.cookies.get("id")
+
+    cartOption match {
+      case Some(value) => {
+        CartProduct.deleteProduct(id, value.value.toInt)
+        println(s"This is the ID that was deleted $id")
+        Redirect(routes.CartProductsController.cartProducts)
+      }
+
+      case None => NotFound // This is just a hack
+    }
+  }
 }

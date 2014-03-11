@@ -27,4 +27,8 @@ object Cart {
       ).executeInsert()
     }
   }
+
+  def listAllCarts(): List[Cart] = DB.withConnection { implicit c =>
+    SQL("select * from carts").as(cart *)
+  }
 }

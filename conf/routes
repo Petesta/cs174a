@@ -10,11 +10,11 @@ GET     /products/:id               controllers.ProductsController.detail(id: In
 POST    /products/update            controllers.ProductsController.update()
 
 
-GET     /cartProducts               controllers.CartProductsController.addProducts
+GET     /cartProducts               controllers.CartProductsController.cartProducts
+GET     /cartProductsAdd            controllers.CartProductsController.addProducts
+POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)
 
-#POST    /customers                  controllers.CustomersController.createCustomer
 GET     /customers                  controllers.CustomersController.newCustomer
-
 POST    /customers                  controllers.CustomersController.createCustomer
 
 # Map static resources from the /public folder to the /assets URL path

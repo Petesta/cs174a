@@ -3,12 +3,11 @@
 @main("Sales") {
   <h1>Sales</h1>
     @productOrders.map { productOrder =>
-        <ul>
-            <li>@productOrder.productID</li>
-            <li>@productOrder.ordersID</li>
-            <li>@productOrder.priceBuy</li>
-            <li>@productOrder.qty</li>
-        </ul>
+      <ul>
+        <li>@productOrder.productID</li>
+        <li>@productOrder.ordersID</li>
+        <li>@productOrder.priceBuy</li>
+        <li>@productOrder.qty</li>
+      </ul>
     }
-
 }

@@ -19,13 +19,16 @@ object Cart {
     }
   }
 
-  /*def create() {
-    // TODO: We'll probably need to get a FOREIGN KEY value for customerID and create a Date
+  def newCart(id: Int) {
     DB.withConnection { implicit c =>
-      SQL("insert into carts(createdAt, customerID) values ({createdAt, customerID})").on(
-        'createdAt -> createdAt,
-        'customerID -> customerID
+      SQL("insert into carts(createdAt, customerID) values ({currentDate}, {id})").on(
+        'currentDate -> new Date(),
+        'id -> id
       ).executeInsert()
     }
-  }*/
+  }
+
+  def listAllCarts(): List[Cart] = DB.withConnection { implicit c =>
+    SQL("select * from carts").as(cart *)
+  }
 }

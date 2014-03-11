@@ -11,4 +11,6 @@ import models.Cart
 object CartsController extends Controller {
   def newCart = TODO
   def createCart = TODO
+
+  def carts = TODO
 }

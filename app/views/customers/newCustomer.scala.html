@@ -1,0 +1,19 @@
+@(customerForm: Form[(String, String, String, String, String, String, String)])
+
+@import helper._
+
+@main("newCustomer") {
+  <h1>New Customer</h1>
+
+  <center><h2>Create new customer account</h2></center>
+  @form(routes.CustomersController.createCustomer) {
+    @inputText(customerForm("depotID"))
+    @inputText(customerForm("firstName"))
+    @inputText(customerForm("lastName"))
+    @inputText(customerForm("email"))
+    @inputText(customerForm("password"))
+    @inputText(customerForm("street"))
+    @inputText(customerForm("status"))
+    <input type="submit" value="Create" class="btn btn-large btn-mobile-block btn-blue">
+  }
+}

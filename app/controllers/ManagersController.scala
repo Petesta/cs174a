@@ -29,10 +29,11 @@ object ManagersController extends Controller {
     var status = ""
     var total = 0
 
+    /* TODO: foreach?
     purchases.foreach { p =>
       println(p)
       total += p.qty * p.priceBuy
-    }
+    }*/
 
     if(total > 500){
       status = "Gold"

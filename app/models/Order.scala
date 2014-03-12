@@ -4,6 +4,7 @@ import anorm._
 import anorm.SqlParser._
 
 import java.util.{Date}
+
 import play.api.db._
 import play.api.Play.current
 
@@ -18,14 +19,24 @@ object Order {
     }
   }
 
+  def findPreviousOrder(customerID: Int): List[Order] = DB.withConnection { implicit c =>
+    SQL("select * from orders where customerID = {customerID}").on(
+      'customerID -> customerID
+    ).as(order *)
+  }
 
-  /*def create() {
-    // TODO: We'll probably need to get a FOREIGN KEY value for customerID
+  /*
+  def createOrder(customerID: Int) {
     DB.withConnection { implicit c =>
-      SQL("insert into orders(createdAt, customerID) values ({createdAt, customerID})").on(
-        'createdAt -> createdAt,
+      SQL("insert into orders(createdAt, customerID) values ({createdAt}, {customerID})").on(
+        'createdAt -> new Date(),
         'customerID -> customerID
       ).executeInsert()
+
+      SQL("delete from cartProducts where cartID = {cartID}").on(
+        'cartID -> customerID
+      ).executeUpdate()
     }
-  }*/
+  }
+  */
 }

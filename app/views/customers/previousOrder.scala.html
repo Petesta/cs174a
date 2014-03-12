@@ -1,0 +1,14 @@
+@(orders: List[Order])
+
+@import helper._
+
+@main("Displaying a previous order") {
+  @if(!orders.isEmpty) {
+    @orders.map { order =>
+      <li>
+        @order.id
+        @order.createdAt
+      </li>
+    }
+  } else { <li>You have no previous orders.</li> }
+}

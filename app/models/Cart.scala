@@ -31,4 +31,10 @@ object Cart {
   def listAllCarts(): List[Cart] = DB.withConnection { implicit c =>
     SQL("select * from carts").as(cart *)
   }
+
+  def getById(id: Int): List[Cart] = DB.withConnection { implicit c =>
+    SQL("select * from carts where id = {id}").on(
+      'id -> id
+    ).as(cart *)
+  }
 }

@@ -1,0 +1,8 @@
+@(orders: List[Order])
+
+@main("Order List") {
+    <h1>Order List</h1>
+    @orders.map { order =>
+        <a href="/customer/order/@order.id">@order.id</a>
+    }
+}

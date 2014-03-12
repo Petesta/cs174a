@@ -24,6 +24,20 @@ object Customer {
     }
   }
 
+  def getAll(): List[Customer] = DB.withConnection { implicit c =>
+    SQL("select * from customers").as(customer *)
+  }
+
+  def updateStatus(id: Int, status: String) {
+    DB.withConnection { implicit c =>
+      SQL("update customers set status={status} where id = {id}").on(
+        'status -> status,
+        'id -> id
+      ).executeUpdate()
+    }
+  }
+
+
   def create(depotID: String, firstName: String, lastName: String, email: String, password: String, street: String, status: String) {
     DB.withConnection { implicit c =>
       SQL("insert into customers(depotID, firstName, lastName, email, password, street, status) values ({depotID}, {firstName}, {lastName}, {email}, {password}, {street}, {status})").on(

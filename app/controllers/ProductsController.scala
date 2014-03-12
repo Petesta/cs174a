@@ -20,6 +20,10 @@ object ProductsController extends Controller {
     Ok(views.html.products.list(Product.all()))
   }
 
+  def manageList = Action {
+    Ok(views.html.products.manageList(Product.all()))
+  }
+
   def detail(id: Int) = Action {
     Ok(views.html.products.detail(Product.getById(id), productForm))
   }

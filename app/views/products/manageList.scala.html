@@ -1,0 +1,8 @@
+@(products: List[Product])
+
+@main("Product List to manage") {
+    <h1>Product Manager List</h1>
+    @products.map { product =>
+        <a href="@routes.ProductsController.manage(product.id)">@product.stockNumber</a>
+    }
+}

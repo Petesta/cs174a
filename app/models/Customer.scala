@@ -64,4 +64,12 @@ object Customer {
     val row = SQL("select id from customers order by id desc limit 1").apply().head
     row[Int]("id").toString
   }
+
+  def customerAuth(email: String, password: String): List[Customer] =
+    DB.withConnection { implicit c =>
+      SQL("select * from customers where email = {email} and password = {password}").on(
+        'email -> email,
+        'password -> password
+      ).as(customer *)
+    }
 }

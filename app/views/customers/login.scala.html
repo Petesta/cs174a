@@ -1,0 +1,11 @@
+@(loginForm: Form[(String, String)])
+
+@import helper._
+
+@main("Log In") {
+  @form(routes.Auth.authenticate) {
+    @inputText(loginForm("email"))
+    @inputText(loginForm("password"))
+    <input type="submit" value="Validate" class="btn btn-large btn-mobile-block btn-blue">
+  }
+}

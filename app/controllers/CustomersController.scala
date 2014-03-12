@@ -37,3 +37,42 @@ object CustomersController extends Controller {
     ) 
   }
 }
+
+object Auth extends Controller {
+  val loginForm = Form(
+    tuple(
+      "email" -> email,
+      "password" -> text
+    ) verifying ("Invalid email or password", result => result match {
+      case (email, password) => check(email, password)
+    })
+  )
+
+  def check(email: String, password: String) = {
+    val customer = Customer.customerAuth(email, password)
+    val tup = customer.map(f => (f.email, f.password))
+    println(customer)
+    println(tup)
+    println("here i am")
+    (email == tup(0)._1 && password == tup(0)._2)
+  }
+
+ def login = Action { implicit request =>
+    Ok(views.html.customers.login(loginForm))
+  }
+
+  def authenticate = Action { implicit request =>
+    loginForm.bindFromRequest.fold(
+      errors => BadRequest(views.html.customers.login(errors)),
+      user => Redirect(routes.ProductsController.list).withSession(Security.username -> user._1)
+    )
+  }
+
+  /*
+  def logout = Action {
+    Redirect(routes.Auth.login).withNewSession.flashing(
+      "success" -> "You are now logged out."
+    )
+  }
+  */
+}

@@ -29,6 +29,9 @@ GET     /customer/order/:orderId       controllers.OrdersController.detail(order
 GET     /customers                  controllers.CustomersController.newCustomer
 POST    /customers                  controllers.CustomersController.createCustomer
 
+GET     /login                      controllers.Auth.login
+POST    /login                      controllers.Auth.authenticate
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 

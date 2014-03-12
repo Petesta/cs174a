@@ -47,6 +47,13 @@ object Auth extends Controller {
       case (email, password) => check(email, password)
     })
   )
+  
+/*
+  def about = Action { implicit request =>
+    val user: Option[String] = Customer.findCustomerEmail(request.session.get("email"))
+    Ok(views.html.main(user))
+  }
+*/
 
   def check(email: String, password: String) = {
     val customer = Customer.customerAuth(email, password)
@@ -64,15 +71,13 @@ object Auth extends Controller {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       errors => BadRequest(views.html.customers.login(errors)),
-      user => Redirect(routes.ProductsController.list).withSession(Security.username -> user._1)
+      user => Redirect(routes.ProductsController.list).withSession("email" -> user._1)
     )
   }
 
-  /*
   def logout = Action {
     Redirect(routes.Auth.login).withNewSession.flashing(
       "success" -> "You are now logged out."
     )
   }
-  */
 }

@@ -23,6 +23,23 @@ object OrdersProduct {
     }
   }
 
+  def getAllByOrder(id: Int): List[OrdersProduct] = DB.withConnection { implicit c =>
+    SQL("select * from ordersProducts op " +
+      "where op.ordersID= {id} "
+      ).on('id -> id).as(ordersProduct *)
+  }
+
+  def insertProduct(qty: Int, priceBuy: Double, productID: Int, ordersID: Int) {
+    DB.withConnection { implicit c =>
+      SQL("insert into ordersProducts(qty, priceBuy, productID, ordersID) values ({qty}, {priceBuy}, {productID}, {ordersID})").on(
+        'qty -> qty,
+        'priceBuy -> priceBuy,
+        'productID -> productID,
+        'ordersID -> ordersID
+      ).executeInsert()
+    }
+  }
+
   def getMonthlySalesPerProduct(id: Int): List[OrdersProduct] = DB.withConnection { implicit c =>
     SQL("select * from ordersProducts op " +
       "inner join orders o on op.ordersID = o.id " +

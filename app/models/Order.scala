@@ -18,10 +18,31 @@ object Order {
     }
   }
 
+  def getAllByCustomer(id: Int): List[Order] = DB.withConnection { implicit c =>
+    SQL("select * from orders o " +
+      "where o.customerID = {id} ").on('id -> id).as(order *)
+  }
+
   def getTotalPurchase(id: Int): List[Order] = DB.withConnection { implicit c =>
     SQL("select * from orders o " +
       "inner join ordersProducts op on op.ordersID = o.id " +
       "where o.customerID = {id} ").on('id -> id).as(order *)
+  }
+
+  def insert(id: Int) {
+    DB.withConnection { implicit c =>
+      SQL("insert into orders(createdAt, customerID) values ({currentDate}, {id})").on(
+        'currentDate -> new Date(),
+        'id -> id
+      ).executeInsert()
+    }
+  }
+
+  def getLatest(id: Int): List[Order] = DB.withConnection { implicit c =>
+    SQL("select * from orders o " +
+      "where o.customerID = {id} " +
+      "order by o.id DESC Limit 1"
+      ).on('id -> id).as(order *)
   }
 
 

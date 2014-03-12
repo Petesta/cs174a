@@ -16,6 +16,11 @@ GET     /cartProducts               controllers.CartProductsController.cartProdu
 GET     /cartProductsAdd            controllers.CartProductsController.addProducts
 POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)
 
+GET     /checkout/:id               controllers.CartsController.checkout(id: Int)
+
+GET     /customer/:customerId/order/all            controllers.OrdersController.list(customerId: Int)
+GET     /customer/order/:orderId       controllers.OrdersController.detail(orderId: Int)
+
 GET     /customers                  controllers.CustomersController.newCustomer
 POST    /customers                  controllers.CustomersController.createCustomer
 

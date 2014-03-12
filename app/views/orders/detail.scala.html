@@ -1,0 +1,14 @@
+@(orders: List[OrdersProduct])
+
+@import helper._
+
+@main("Order Detail") {
+    @orders.map { order =>
+        <p>
+            <ul>
+                <li>productid: @order.productID</li>
+                <li>qty: @order.qty</li>
+            </ul>
+        </p>
+    }
+}

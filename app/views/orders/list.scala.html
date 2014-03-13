@@ -1,8 +1,19 @@
 @(orders: List[Order])
 
 @main("Order List") {
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <h1>Order List</h1>
     @orders.map { order =>
-        <a href="/customer/order/@order.id">@order.id</a>
+        <a href="@routes.OrdersController.detail(order.id)">@order.id</a>
     }
+
+    <br>
+    Find by ordernumber: <input id="search_order" type="text"><button id="search_button" type="button">Serach</button>
 }
+
+<script>
+$( "#search_button" ).click(function() {
+    $(location).attr('href', '/order/' + $('#search_order').val());
+});
+</script>

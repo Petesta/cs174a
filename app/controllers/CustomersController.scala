@@ -21,6 +21,9 @@ object CustomersController extends Controller {
     )
   )
 
+  def list = Action {
+    Ok(views.html.managers.customers(Customer.getAll()))
+  }
 
   def about = Action { implicit request =>
     val user: Option[Customer] = Customer.findByEmail(request.session.get("email"))

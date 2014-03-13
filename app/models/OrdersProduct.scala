@@ -59,6 +59,15 @@ object OrdersProduct {
       "order by o.createdAt desc").on('id -> id).as(ordersProduct ~ Order.order ~ Product.product ~ Category.category map(flatten) *)
   }
 
+  def getMonthlySalesPerCustomer(id: Int): List[(OrdersProduct, Order, Product, Customer)] = DB.withConnection { implicit c =>
+    SQL("select * from ordersProducts op " +
+      "inner join orders o on op.ordersID = o.id " +
+      "inner join products p on op.productID = p.id " +
+      "inner join customers c on o.customerID = c.id " +
+      "where c.id = {id} " +
+      "order by o.createdAt desc").on('id -> id).as(ordersProduct ~ Order.order ~ Product.product ~ Customer.customer map(flatten) *)
+  }
+
   /*
     def getSalesFromCustomerWithMostPurchases(): List[OrdersProduct] = DB.withConnection { implicit c =>
       SQL("select * from ordersProducts op " +

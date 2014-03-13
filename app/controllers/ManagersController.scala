@@ -27,6 +27,10 @@ object ManagersController extends Controller {
     Ok(views.html.managers.salesCategory(OrdersProduct.getMonthlySalesPerCategory(catID)))
   }
 
+  def getSalesPerCustomer(customerID: Int) = Action { implicit request =>
+    Ok(views.html.managers.salesCustomer(OrdersProduct.getMonthlySalesPerCustomer(customerID)))
+  }
+
   def updateCustomerStatus = Action {
     val purchases = Order.getTotalPurchase(1)
     var status = ""
@@ -52,12 +56,5 @@ object ManagersController extends Controller {
     Ok("Status updated")
   }
 
-  /*
-  def getSalesPerCustomer = Action {
-      Ok(views.html.managers.sales())
-  }
 
-  def setItemPrice = Action {
-      Ok(views.html.managers.sales())
-  }*/
 }

@@ -14,6 +14,8 @@ POST    /manager/products/update    controllers.ProductsController.update()
 
 GET     /manager/categories         controllers.CategoryController.list
 
+GET     /manager/customers          controllers.CustomersController.list
+
 GET     /cartProducts               controllers.CartProductsController.cartProducts
 GET     /cartProductsAdd            controllers.CartProductsController.addProducts
 POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)
@@ -44,7 +46,7 @@ GET     /manager/sales/product/:id          controllers.ManagersController.getSa
 GET     /manager/sales/category/:id         controllers.ManagersController.getSalesPerCategory(id: Int)
 
 # The customer who did the most purchase
-#GET     /manager/sales/customer             controllers.ManagersController.getSalesFromCustomerWithMostPurchases
+GET     /manager/sales/customer/:id         controllers.ManagersController.getSalesPerCustomer(id: Int)
 
 # Customer status adjustment according to the sales in the month
 #PUT    /manager/customers/status/update     controllers.ManagersController.updateCustomerStatus

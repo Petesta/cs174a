@@ -15,6 +15,7 @@ POST    /manager/products/update    controllers.ProductsController.update()
 GET     /manager/categories         controllers.CategoryController.list
 
 GET     /manager/customers          controllers.CustomersController.list
+GET     /manager/customer/:id/status/update    controllers.ManagersController.updateCustomerStatus(id: Int)
 
 GET     /cartProducts               controllers.CartProductsController.cartProducts
 GET     /cartProductsAdd            controllers.CartProductsController.addProducts

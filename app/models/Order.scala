@@ -7,6 +7,7 @@ import java.util.{Date}
 
 import play.api.db._
 import play.api.Play.current
+import models.OrdersProduct
 
 case class Order(id: Int, createdAt: Date, customerID: Int)
 
@@ -30,10 +31,10 @@ object Order {
       "where o.customerID = {id} ").on('id -> id).as(order *)
   }
 
-  def getTotalPurchase(id: Int): List[Order] = DB.withConnection { implicit c =>
+  def getTotalPurchase(id: Int): List[(Order, OrdersProduct)] = DB.withConnection { implicit c =>
     SQL("select * from orders o " +
       "inner join ordersProducts op on op.ordersID = o.id " +
-      "where o.customerID = {id} ").on('id -> id).as(order *)
+      "where o.customerID = {id} ").on('id -> id).as(order ~ OrdersProduct.ordersProduct map(flatten) *)
   }
 
   def insert(id: Int) {

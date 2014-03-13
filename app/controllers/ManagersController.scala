@@ -31,28 +31,33 @@ object ManagersController extends Controller {
     Ok(views.html.managers.salesCustomer(OrdersProduct.getMonthlySalesPerCustomer(customerID)))
   }
 
-  def updateCustomerStatus = Action {
-    val purchases = Order.getTotalPurchase(1)
+  def updateCustomerStatus(customerID: Int) = Action { implicit request =>
+    val purchases = Order.getTotalPurchase(customerID)
     var status = ""
-    var total = 0
+    var total = new BigDecimal(0.0)
 
-    /* TODO: foreach?
     purchases.foreach { p =>
-      println(p)
-      total += p.qty * p.priceBuy
-    }*/
+      println("subtotal before: " + total)
+      val qty = new BigDecimal(p._2.qty)
+      val subtotal = (p._2.priceBuy).multiply(qty)
+      println("subtotal: " + subtotal)
+      println("qty " + qty +" * " + p._2.priceBuy)
+      total = total.add(subtotal)
+      println("subtotal after: " + total)
+    }
+    println("total :" + total)
 
-    if(total > 500){
+    if(total.compareTo(new BigDecimal(500)) > 0){
       status = "Gold"
-    } else if (total > 100 && total <= 500) {
+    } else if ((total.compareTo(new BigDecimal(100)) > 0) && (total.compareTo(new BigDecimal(500)) <= 0)) {
       status = "Silver"
-    } else if (total > 0 && total <= 100) {
+    } else if ((total.compareTo(new BigDecimal(0)) > 0) && (total.compareTo(new BigDecimal(100)) <= 0)) {
       status = "Green"
     } else {
-      status = "NEW"
+      status = "New"
     }
 
-    Customer.updateStatus(1, status)
+    Customer.updateStatus(customerID, status)
     Ok("Status updated")
   }
 

@@ -9,6 +9,8 @@ import play.api.db._
 import play.api.Play.current
 import java.math.{BigDecimal}
 import models.Order
+import models.Product
+import models.Category
 
 
 case class OrdersProduct(id: Int, qty: Int, priceBuy: BigDecimal, productID: Int, ordersID: Int)
@@ -48,12 +50,13 @@ object OrdersProduct {
       "order by o.createdAt desc").on('id -> id).as(ordersProduct ~ Order.order map(flatten) *)
   }
 
-  def getMonthlySalesPerCategory(id: Int): List[(OrdersProduct, Order)] = DB.withConnection { implicit c =>
+  def getMonthlySalesPerCategory(id: Int): List[(OrdersProduct, Order, Product, Category)] = DB.withConnection { implicit c =>
     SQL("select * from ordersProducts op " +
       "inner join orders o on op.ordersID = o.id " +
       "inner join products p on op.productID = p.id " +
-      "inner join category c on p.categoryID = {id} " +
-      "order by o.createdAt desc").on('id -> id).as(ordersProduct ~ Order.order map(flatten) *)
+      "inner join category c on p.categoryID = c.id " +
+      "where c.id = {id} " +
+      "order by o.createdAt desc").on('id -> id).as(ordersProduct ~ Order.order ~ Product.product ~ Category.category map(flatten) *)
   }
 
   /*

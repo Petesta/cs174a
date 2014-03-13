@@ -1,0 +1,14 @@
+@(productOrders: List[(OrdersProduct, Order, Product, Category)])
+
+@main("Sales") {
+  <h1>Sales</h1>
+    @productOrders.map { productOrder =>
+      <ul>
+        <li>Date: @productOrder._2.createdAt</li>
+        <li>ProductID: @productOrder._1.productID</li>
+        <li>OrderNumber: @productOrder._1.ordersID</li>
+        <li>Selling Price: @productOrder._1.priceBuy</li>
+        <li>Qty: @productOrder._1.qty</li>
+      </ul>
+    }
+}

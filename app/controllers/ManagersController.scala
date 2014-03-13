@@ -23,8 +23,8 @@ object ManagersController extends Controller {
   }
 
 
-  def getSalesPerCategory = Action {
-    Ok(views.html.managers.sales(OrdersProduct.getMonthlySalesPerCategory(1)))
+  def getSalesPerCategory(catID: Int) = Action { implicit request =>
+    Ok(views.html.managers.salesCategory(OrdersProduct.getMonthlySalesPerCategory(catID)))
   }
 
   def updateCustomerStatus = Action {

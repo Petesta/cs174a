@@ -39,7 +39,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /manager/sales/product/:id          controllers.ManagersController.getSalesPerProduct(id: Int)
 
 # The amount of sales per category
-GET     /manager/sales/category             controllers.ManagersController.getSalesPerCategory
+GET     /manager/sales/category/:id         controllers.ManagersController.getSalesPerCategory(id: Int)
 
 # The customer who did the most purchase
 #GET     /manager/sales/customer             controllers.ManagersController.getSalesFromCustomerWithMostPurchases

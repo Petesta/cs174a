@@ -38,7 +38,7 @@ object CustomersController extends Controller {
       {
         case (depotID, firstName, lastName, email, password, street, status) => {
           Customer.create(depotID, firstName, lastName, email, password, street, status)
-          Redirect(routes.ManagersController.getSalesPerCategory)
+          Redirect(routes.ProductsController.list)
         }
       }
     ) 

@@ -1,13 +1,14 @@
-@(productOrders: List[OrdersProduct])
+@(productOrders: List[(OrdersProduct, Order)])
 
 @main("Sales") {
   <h1>Sales</h1>
     @productOrders.map { productOrder =>
       <ul>
-        <li>@productOrder.productID</li>
-        <li>@productOrder.ordersID</li>
-        <li>@productOrder.priceBuy</li>
-        <li>@productOrder.qty</li>
+        <li>Date: @productOrder._2.createdAt</li>
+        <li>ProductID: @productOrder._1.productID</li>
+        <li>OrderNumber: @productOrder._1.ordersID</li>
+        <li>Selling Price: @productOrder._1.priceBuy</li>
+        <li>Qty: @productOrder._1.qty</li>
       </ul>
     }
 }

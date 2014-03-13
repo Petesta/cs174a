@@ -15,8 +15,11 @@ import java.math.{BigDecimal}
 object ManagersController extends Controller {
 
 
-  def getSalesPerProduct = Action {
-      Ok(views.html.managers.sales(OrdersProduct.getMonthlySalesPerProduct(1)))
+  def getSalesPerProduct(productID: Int) = Action { implicit request =>
+      val products = OrdersProduct.getMonthlySalesPerProduct(productID)
+      println("products by id " + productID)
+      println(products)
+      Ok(views.html.managers.sales(products))
   }
 
 

@@ -1,4 +1,4 @@
-@(cartProducts: List[anorm.~[CartProduct, Product]])
+@(cartProducts: List[anorm.~[CartProduct, Product]], customer: Customer)
 @import helper._
 
 @main("Products in cart") {
@@ -11,5 +11,8 @@
 
         </ul>
     }
-    <a><button type="button">Checkout</button></a>
+
+    <h3>Tax: </h3>
+    <h2>Total: </h2>
+    <a href="@routes.CartsController.checkout(customer.id)"><button type="button">Checkout</button></a>
 }

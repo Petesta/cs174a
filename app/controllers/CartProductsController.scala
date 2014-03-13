@@ -43,7 +43,7 @@ object CartProductsController extends Controller {
 
     customer match {
       case Some(value) => {
-        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.id)))
+        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.id), value))
       }
 
       case None => NotFound // This is just a hack

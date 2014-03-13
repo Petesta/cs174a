@@ -27,7 +27,7 @@ object CartsController extends Controller {
     println("customer: " + customerId)
 
     // get all products from chartproducts
-    val productsInCart = CartProduct.listAllProducts(cartID)
+    val productsInCart = CartProduct.getAllByCart(cartID)
 
     // crate new order
     Order.insert(customerId)

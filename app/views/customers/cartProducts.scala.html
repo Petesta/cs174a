@@ -1,17 +1,15 @@
-@(cartProducts: List[CartProduct])
-
+@(cartProducts: List[anorm.~[CartProduct, Product]])
 @import helper._
 
 @main("Products in cart") {
-  <h1>@cartProducts.size Product(s)</h1>
-  <ul>
+    <h1>@cartProducts.size Product(s)</h1>
     @cartProducts.map { cartProduct =>
-      <li>
-        @cartProduct.productID
-        @form(routes.CartProductsController.deleteProducts(cartProduct.id)) {
-          <input type="submit" value="Delete">
-        }
-      </li>
+        @println(cartProduct)
+        <ul>
+            How to loop over 2-tuple anorm list?
+            ~(CartProduct(1,10,1,1),Product(1,101,1630.0,1,1,1,Processor speed: 3.33Ghz, RAM size: 512Mb, Hard disk size: 100Gb, Display size: 17"))
+
+        </ul>
     }
-  </ul>
+    <a><button type="button">Checkout</button></a>
 }

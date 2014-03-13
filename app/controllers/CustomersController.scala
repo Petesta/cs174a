@@ -58,9 +58,6 @@ object Auth extends Controller {
   def check(email: String, password: String) = {
     val customer = Customer.customerAuth(email, password)
     val tup = customer.map(f => (f.email, f.password))
-    println(customer)
-    println(tup)
-    println("here i am")
     (email == tup(0)._1 && password == tup(0)._2)
   }
 

@@ -1,0 +1,4 @@
+@(user: Option[Customer])(implicit session: Session)
+
+@println(user)
+@session.get("email")

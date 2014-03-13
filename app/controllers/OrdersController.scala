@@ -10,41 +10,23 @@ import play.api.data.validation.Constraints._
 
 import models.Order
 import models.OrdersProduct
+import models.Customer
 
 object OrdersController extends Controller {
-  def newOrder = TODO
-  
-  /*
-  def cartProducts = Action { implicit request =>
-    val cartOption = request.cookies.get("id")
 
-    cartOption match {
+  def list() = Action { implicit request =>
+    val customer = Customer.findByEmail(request.session.get("email"));
+
+    customer match {
       case Some(value) => {
-        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.value.toInt)))
-      }
-
-      case None => NotFound // This is just a hack
-    }
-  }
-  */
-
-  def previousOrder = Action { implicit request =>
-    val cartOption = request.cookies.get("id")
-
-    cartOption match {
-      case Some(value) => {
-        Ok(views.html.customers.previousOrder(Order.findPreviousOrder(value.value.toInt))) 
+        Ok(views.html.orders.list(Order.getAllByCustomer(value.id)))
       }
 
       case None => NotFound // This is just a hack
     }
   }
 
-  def list(customerId: Int) = Action {
-    Ok(views.html.orders.list(Order.getAllByCustomer(customerId)))
-  }
-
-  def detail(orderId: Int) = Action {
+  def detail(orderId: Int) = Action { implicit request =>
     Ok(views.html.orders.detail(OrdersProduct.getAllByOrder(orderId)))
   }
 }

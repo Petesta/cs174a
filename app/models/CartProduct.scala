@@ -9,6 +9,8 @@ import play.api.db._
 import play.api.Play.current
 import play.mvc._
 
+import models.Product
+
 case class CartProduct(id: Int, qty: Int, productID: Int, cartID: Int)
 
 object CartProduct {
@@ -39,9 +41,14 @@ object CartProduct {
         ).executeUpdate
     }
   }
-
-  def listAllProducts(cartID: Int): List[CartProduct] = DB.withConnection { implicit c =>
+   def getAllByCart(cartID: Int): List[CartProduct] = DB.withConnection { implicit c =>
     SQL("select * from cartProducts where cartID = {cartID}").on(
       'cartID -> cartID).as(cartProduct *)
+  }
+
+
+  def listAllProducts(cartID: Int): List[(CartProduct, Product)] = DB.withConnection { implicit c =>
+    SQL("select * from cartProducts cp inner join products p on cp.productID = p.id where cartID = {cartID}").on(
+      'cartID -> cartID).as(CartProduct.cartProduct ~ Product.product map(flatten)*)
   }
 }

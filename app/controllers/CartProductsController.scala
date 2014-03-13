@@ -6,7 +6,9 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.data.validation.Constraints._
 
+import models.Cart
 import models.CartProduct
+import models.Customer
 
 object CartProductsController extends Controller {
   val cartProductForm = Form(
@@ -17,17 +19,16 @@ object CartProductsController extends Controller {
   )
 
   def addProducts = Action { implicit request =>
-    val cartOption = request.cookies.get("id")
+    val customer = Customer.findByEmail(request.session.get("email"));
 
-    cartOption match {
+    customer match {
       case Some(value) => {
-        println(value.value.toInt)
         cartProductForm.bindFromRequest.fold(
           errors => BadRequest(views.html.customers.addProducts(cartProductForm)),
           {
             case (qty, productID) => {
-              CartProduct.insertProduct(qty, productID, value.value.toInt)
-              Redirect(routes.ManagersController.getSalesPerCategory)
+              CartProduct.insertProduct(qty, productID, value.id)
+              Redirect(routes.CartProductsController.cartProducts)
             }
           }
         )
@@ -38,11 +39,11 @@ object CartProductsController extends Controller {
   }
 
   def cartProducts = Action { implicit request =>
-    val cartOption = request.cookies.get("id")
+    val customer = Customer.findByEmail(request.session.get("email"));
 
-    cartOption match {
+    customer match {
       case Some(value) => {
-        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.value.toInt)))
+        Ok(views.html.customers.cartProducts(CartProduct.listAllProducts(value.id), value))
       }
 
       case None => NotFound // This is just a hack
@@ -50,11 +51,11 @@ object CartProductsController extends Controller {
   }
 
   def deleteProducts(id: Int) = Action { implicit request =>
-    val cartOption = request.cookies.get("id")
+    val customer = Customer.findByEmail(request.session.get("email"));
 
-    cartOption match {
+    customer match {
       case Some(value) => {
-        CartProduct.deleteProduct(id, value.value.toInt)
+        CartProduct.deleteProduct(id, value.id)
         println(s"This is the ID that was deleted $id")
         Redirect(routes.CartProductsController.cartProducts)
       }

@@ -15,6 +15,4 @@ object OrdersProductsController extends Controller {
       "priceBuy" -> bigDecimal
     )
   )
-
-  def newOrdersProduct = TODO
 }

@@ -1,17 +1,35 @@
-@(cartProducts: List[CartProduct])
-
+@(cartProducts: List[(CartProduct, Product)], customer: Customer)
 @import helper._
 
 @main("Products in cart") {
-  <h1>@cartProducts.size Product(s)</h1>
-  <ul>
-    @cartProducts.map { cartProduct =>
-      <li>
-        @cartProduct.productID
-        @form(routes.CartProductsController.deleteProducts(cartProduct.id)) {
-          <input type="submit" value="Delete">
+    <h1>@cartProducts.size Product(s)</h1>
+
+        @cartProducts.map { cartProduct =>
+            @println(cartProduct)
+            <ul>
+                (total=total+(cartProduct._1.qty * cartProduct._2.price))
+                <li>ID: @cartProduct._1.id</li>
+                <li>Qty: @cartProduct._1.qty</li>
+                <li>Stocknr: @cartProduct._2.stockNumber</li>
+                <li>Price: @cartProduct._2.price</li>
+                <li>Company: @cartProduct._2.companyID</li>
+                <li>Model: @cartProduct._2.modelID</li>
+                <li>Category: @cartProduct._2.categoryID</li>
+                <li>Description: @cartProduct._2.description</li>
+
+                <li>
+                    @form(routes.CartProductsController.deleteProducts(cartProduct._1.id)) {
+                        <span style="float: left;"><input type="submit" value="Delete"></span>
+                    }
+                </li>
+            </ul>
         }
-      </li>
-    }
-  </ul>
+
+
+        <h3>Shipping and Handling Fee: 10% if total < $100
+        </h3>
+        <h2>Total: </h2>
+
+
+    <a href="@routes.CartsController.checkout(customer.id)"><button type="button">Checkout</button></a>
 }

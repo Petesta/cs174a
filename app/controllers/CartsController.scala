@@ -11,23 +11,21 @@ import models.Cart
 import models.CartProduct
 import models.Order
 import models.OrdersProduct
+import models.Product
 
 
 object CartsController extends Controller {
 
   def checkout(cartID: Int) = Action { implicit request =>
-    val customers = Customer.getAll()
-    customers.foreach(x => println(x))
 
     //get customer id according cart
     val cart = Cart.getById(cartID)
-    val allCharts = Cart.listAllCarts()
-    allCharts.foreach(x => println(x))
+    println(cart)
     var customerId = cart(0).customerID
     println("customer: " + customerId)
 
     // get all products from chartproducts
-    val productsInCart = CartProduct.listAllProducts(cartID)
+    val productsInCart = CartProduct.getAllByCart(cartID)
 
     // crate new order
     Order.insert(customerId)
@@ -37,12 +35,12 @@ object CartsController extends Controller {
     // create for each product in cartProducts an new orderproduct and append to order
     productsInCart.foreach(x => println(x))
     productsInCart.foreach( productInChart =>
-      OrdersProduct.insertProduct(productInChart.qty, 13.3, productInChart.id, orderId)
+      OrdersProduct.insertProduct(productInChart.qty, Product.getById(productInChart.productID)(0).price, productInChart.id, orderId)
     )
 
     //TODO: delete cartproducts
 
-    Redirect(routes.OrdersController.list(customerId))
+    Redirect(routes.OrdersController.list())
   }
 
 }

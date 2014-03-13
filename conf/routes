@@ -12,25 +12,23 @@ GET     /manager/products           controllers.ProductsController.manageList
 GET     /manager/products/:id       controllers.ProductsController.manage(id: Int)
 POST    /manager/products/update    controllers.ProductsController.update()
 
-
-
 GET     /cartProducts               controllers.CartProductsController.cartProducts
 GET     /cartProductsAdd            controllers.CartProductsController.addProducts
 POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)
-GET     /orders                     controllers.OrdersController.previousOrder
 
-
+GET     /about                     controllers.CustomersController.about
 
 GET     /checkout/:id               controllers.CartsController.checkout(id: Int)
 
-GET     /customer/:customerId/order/all            controllers.OrdersController.list(customerId: Int)
-GET     /customer/order/:orderId       controllers.OrdersController.detail(orderId: Int)
+GET     /orders                     controllers.OrdersController.list
+GET     /order/:orderId             controllers.OrdersController.detail(orderId: Int)
 
 GET     /customers                  controllers.CustomersController.newCustomer
 POST    /customers                  controllers.CustomersController.createCustomer
 
 GET     /login                      controllers.Auth.login
 POST    /login                      controllers.Auth.authenticate
+GET     /logout                     controllers.Auth.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -8,17 +8,30 @@
         <li><a href="@routes.OrdersController.previousOrder">Orders</a></li>
         <li><a href="@routes.CustomersController.newCustomer">Sign Up</a></li>
         <li><a href="@routes.Auth.authenticate">Log In</a></li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manager <b class="caret"></b></a>
 
-              <ul class="dropdown-menu">
-                  <li><a href="@routes.ProductsController.manageList">Products</a></li>
-                  <li><a href="@routes.ManagersController.getSalesPerProduct">Sales (per Customer)</a></li>
-                  <li><a href="@routes.ManagersController.getSalesPerCategory">Sales (per Category)</a></li>
-                  <li><a href="#">Sales (per Product)</a></li>
-              </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manager <b class="caret"></b></a>
 
-          </li>
+            <ul class="dropdown-menu">
+              <li><a href="">Products</a></li>
+              <li><a href="">Sales (per Customer)</a></li>
+              <li><a href="">Sales (per Category)</a></li>
+              <li><a href="#">Sales (per Product)</a></li>
+            </ul>
+
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">External World <b class="caret"></b></a>
+
+          <ul class="dropdown-menu">
+            <li><a href="">Receive Shipping Notice</a></li>
+            <li><a href="">Receive a shipment</a></li>
+            <li><a href="">Check a product quantity</a></li>
+            <li><a href="@routes.InventoryProductsController.quantity">Fill an order</a></li>
+          </ul>
+
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

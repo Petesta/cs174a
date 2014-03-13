@@ -7,7 +7,10 @@ version := "1.0-SNAPSHOT"
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
-  cache
+  cache,
+  "com.typesafe.slick" %% "slick-extensions" % "1.0.0"
 )     
+
+resolvers += "Typesafe Releases" at "http://repo.typesafe.com/typesafe/maven-releases/"
 
 play.Project.playScalaSettings ++ SassPlugin.sassSettings

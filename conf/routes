@@ -12,6 +12,8 @@ GET     /manager/products           controllers.ProductsController.manageList
 GET     /manager/products/:id       controllers.ProductsController.manage(id: Int)
 POST    /manager/products/update    controllers.ProductsController.update()
 
+GET     /manager/categories         controllers.CategoryController.list
+
 GET     /cartProducts               controllers.CartProductsController.cartProducts
 GET     /cartProductsAdd            controllers.CartProductsController.addProducts
 POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)

@@ -16,6 +16,10 @@ object Category {
     }
   }
 
+  def all(): List[Category] = DB.withConnection { implicit c =>
+    SQL("select * from category").as(category *)
+  }
+
   /*def create(name: String) {
     DB.withConnection { implicit c =>
       SQL("insert into category(name) values ({name})").on(

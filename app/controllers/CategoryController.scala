@@ -13,5 +13,7 @@ object CategoryController extends Controller {
     "name" -> nonEmptyText
   )
 
-  def newCategory = TODO
+  def list = Action {
+    Ok(views.html.managers.categories(Category.all()))
+  }
 }

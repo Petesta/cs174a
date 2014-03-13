@@ -1,0 +1,13 @@
+@(categories: List[Category])
+
+@main("Category List for Manager") {
+    <h1>Category Manager List</h1>
+    @categories.map { category =>
+    <ul>
+    <li>ID: @category.id</li>
+    <li>Name: @category.name</li>
+    <li><a href="@routes.ManagersController.getSalesPerCategory(category.id)"><button>Sales</button></a></li>
+
+    </ul>
+    }
+}

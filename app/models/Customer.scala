@@ -65,15 +65,12 @@ object Customer {
     row[Int]("id").toString
   }
 
-/*
-  def findCustomerEmail(email: Option[String]): Option[String] = DB.withConnection { implicit c =>
-    val row = SQL("select * from customers where email = {email}").on(
-      'email -> email
-    )
-
-    row[String]("email")
+  def findByEmail(email: Option[String]): Option[Customer] = {
+    DB.withConnection { implicit c =>
+      SQL("select * from customers where email = {email}").on(
+        'email -> email).as(Customer.customer.singleOpt)
+    }
   }
-*/
 
   def customerAuth(email: String, password: String): List[Customer] =
     DB.withConnection { implicit c =>

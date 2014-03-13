@@ -4,13 +4,12 @@
     <h1>Category Manager List</h1>
     @customers.map { customer =>
     <ul>
-    <li>ID: @customer.id</li>
-    <li>First Name: @customer.firstName</li>
-    <li>Last Name: @customer.lastName</li>
-    <li>Status: @customer.status</li>
-    <li><a href="@routes.ManagersController.getSalesPerCustomer(customer.id)"><button>Purchases</button></a></li>
-    <li><a target="_blank" href="@routes.ManagersController.updateCustomerStatus(customer.id)"><button>Update Status</button></a></li>
-
+        <li>ID: @customer.id</li>
+        <li>First Name: @customer.firstName</li>
+        <li>Last Name: @customer.lastName</li>
+        <li>Status: @customer.status</li>
+        <li><a href="@routes.ManagersController.getSalesPerCustomer(customer.id)"><button>Purchases</button></a></li>
+        <li><a target="_blank" href="@routes.ManagersController.updateCustomerStatus(customer.id)"><button>Update Status</button></a></li>
     </ul>
     }
 }

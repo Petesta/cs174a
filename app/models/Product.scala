@@ -30,6 +30,10 @@ object Product {
     SQL("select * from products where id = {id} LIMIT 1").on('id -> id).as(product *)
   }
 
+  def searchByKeyValue(key: String, value: String): List[Product] = DB.withConnection { implicit c =>
+    SQL("select * from products where {key} = {value}").on('key -> key, 'value -> value).as(product *)
+  }
+
   def update(price: Double) {
     DB.withConnection { implicit c =>
       SQL("update products set price={price}").on(

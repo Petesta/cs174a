@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.ProductsController.list
 
+GET     /products/search/:key/:value controllers.ProductsController.search(key: String, value: String)
 GET     /products                   controllers.ProductsController.list
 GET     /products/:id               controllers.ProductsController.detail(id: Int)
 
@@ -27,6 +28,7 @@ GET     /checkout/:id               controllers.CartsController.checkout(id: Int
 
 GET     /orders                     controllers.OrdersController.list
 GET     /order/:orderId             controllers.OrdersController.detail(orderId: Int)
+GET     /order/rerun/:orderId       controllers.OrdersController.rerun(orderId: Int)
 
 GET     /customers                  controllers.CustomersController.newCustomer
 POST    /customers                  controllers.CustomersController.createCustomer

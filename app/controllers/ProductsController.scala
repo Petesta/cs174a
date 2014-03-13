@@ -32,6 +32,15 @@ object ProductsController extends Controller {
     Ok(views.html.products.manage(Product.getById(id), productForm))
   }
 
+  def search(key: String, value: String) = Action {
+    println("key: " + key + ", value: " + value)
+    val results = Product.searchByKeyValue(key, value)
+    println(results)
+    //stockNumber: String, manufacturer: String, modelNumber: String, category: String, descriptionAttribute: String, descriptionValue: String
+    Ok(views.html.products.list(results))
+  }
+
+
   def update = Action { implicit request =>
     productForm.bindFromRequest.fold(
       //error => BadRequest(views.html.products.detail(Product.getById(id), productForm)),
@@ -40,7 +49,7 @@ object ProductsController extends Controller {
         case (price) => {
           Product.update(price)
           //Redirect(routes.ProductsController.detail(Product.getById(id), productForm))
-          Redirect(routes.ProductsController.list())
+          Redirect(routes.OrdersController.list())
         }
       }
     )

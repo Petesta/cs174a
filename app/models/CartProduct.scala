@@ -47,8 +47,8 @@ object CartProduct {
   }
 
 
-  def listAllProducts(cartID: Int): List[CartProduct~Product] = DB.withConnection { implicit c =>
+  def listAllProducts(cartID: Int): List[(CartProduct, Product)] = DB.withConnection { implicit c =>
     SQL("select * from cartProducts cp inner join products p on cp.productID = p.id where cartID = {cartID}").on(
-      'cartID -> cartID).as(CartProduct.cartProduct ~ Product.product *)
+      'cartID -> cartID).as(CartProduct.cartProduct ~ Product.product map(flatten)*)
   }
 }

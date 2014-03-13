@@ -36,7 +36,7 @@ object CartsController extends Controller {
     // create for each product in cartProducts an new orderproduct and append to order
     productsInCart.foreach(x => println(x))
     productsInCart.foreach( productInChart =>
-      OrdersProduct.insertProduct(productInChart.qty, Product.getById(productInChart.productID)(0).price, productInChart.id, orderId)
+      OrdersProduct.insertProduct(productInChart.qty, Product.getById(productInChart.productID)(0).price, productInChart.productID, orderId)
     )
 
     //delete products in cart

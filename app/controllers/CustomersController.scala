@@ -21,6 +21,13 @@ object CustomersController extends Controller {
     )
   )
 
+
+  def about = Action { implicit request =>
+    val user: Option[Customer] = Customer.findByEmail(request.session.get("email"))
+    Ok(views.html.customers.about(user))
+  }
+
+
   def newCustomer = Action {
     Ok(views.html.customers.newCustomer(customerForm)).withCookies(Cookie("id", Customer.findCustomerID()))
   }
@@ -47,13 +54,6 @@ object Auth extends Controller {
       case (email, password) => check(email, password)
     })
   )
-  
-/*
-  def about = Action { implicit request =>
-    val user: Option[String] = Customer.findCustomerEmail(request.session.get("email"))
-    Ok(views.html.main(user))
-  }
-*/
 
   def check(email: String, password: String) = {
     val customer = Customer.customerAuth(email, password)

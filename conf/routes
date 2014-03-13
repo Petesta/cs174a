@@ -19,7 +19,7 @@ GET     /cartProductsAdd            controllers.CartProductsController.addProduc
 POST    /cartProducts/:id/delete    controllers.CartProductsController.deleteProducts(id: Int)
 GET     /orders                     controllers.OrdersController.previousOrder
 
-
+GET     /about                     controllers.CustomersController.about
 
 GET     /checkout/:id               controllers.CartsController.checkout(id: Int)
 

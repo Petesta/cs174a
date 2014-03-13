@@ -5,7 +5,10 @@
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <h1>Order List</h1>
     @orders.map { order =>
-        <a href="@routes.OrdersController.detail(order.id)">@order.id</a>
+        <ul>
+            <li>Order Number: <a href="@routes.OrdersController.detail(order.id)">@order.id</a></li>
+            <li>Date: @order.createdAt</li>
+        </ul>
     }
 
     <br>

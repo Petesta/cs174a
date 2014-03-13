@@ -3,6 +3,14 @@
 @main("Product List") {
     <h1>Product List</h1>
     @products.map { product =>
-        <a href="/products/@product.id">@product.stockNumber</a>
+        <ul>
+        <li>ID: @product.id</li>
+        <li>Stocknr: <a href="@routes.ProductsController.detail(product.id)">@product.stockNumber</a></li>
+        <li>Price: @product.price</li>
+        <li>Company: @product.companyID</li>
+        <li>Model: @product.modelID</li>
+        <li>Category: @product.categoryID</li>
+        <li>Description: @product.description</li>
+        </ul>
     }
 }

@@ -28,7 +28,7 @@ object CartProductsController extends Controller {
           {
             case (qty, productID) => {
               CartProduct.insertProduct(qty, productID, value.id)
-              Redirect(routes.ManagersController.getSalesPerCategory)
+              Redirect(routes.CartProductsController.cartProducts)
             }
           }
         )

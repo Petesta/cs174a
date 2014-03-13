@@ -5,13 +5,15 @@
     @products.map { product =>
     <ul>
     <li>ID: @product.id</li>
-    <li>Stocknr: @product.stockNumber</a>
+    <li>Stocknr: @product.stockNumber</li>
     <li>Price: @product.price</li>
     <li>Company: @product.companyID</li>
     <li>Model: @product.modelID</li>
     <li>Category: @product.categoryID</li>
     <li>Description: @product.description</li>
     <li><a href="@routes.ProductsController.manage(product.id)"><button>Edit</button></a></li>
+    <li><a href="@routes.ManagersController.getSalesPerProduct(product.id)"><button>Sales</button></a></li>
+
     </ul>
     }
 }

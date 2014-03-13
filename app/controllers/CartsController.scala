@@ -12,6 +12,7 @@ import models.CartProduct
 import models.Order
 import models.OrdersProduct
 import models.Product
+import models.CartProduct
 
 
 object CartsController extends Controller {
@@ -38,7 +39,10 @@ object CartsController extends Controller {
       OrdersProduct.insertProduct(productInChart.qty, Product.getById(productInChart.productID)(0).price, productInChart.id, orderId)
     )
 
-    //TODO: delete cartproducts
+    //delete products in cart
+    productsInCart.foreach( productInChart =>
+      CartProduct.deleteProduct(productInChart.id, customerId)
+    )
 
     Redirect(routes.OrdersController.list())
   }

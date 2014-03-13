@@ -17,4 +17,13 @@ object ShippingProduct {
       case id~stockNumber~qty~shippingNoticeID => ShippingProduct(id, stockNumber, qty, shippingNoticeID)
     }
   }
+
+  /*
+  def create() {
+    DB.withConnection { implicit c =>
+      SQL("insert into shippingProducts(stockNumber, qty, shippingNoticeID)")
+    }
+  }
+  */
+
 }

@@ -1,0 +1,10 @@
+@(inventoryProductForm: Form[String])
+
+@import helper._
+
+@main("Input a stock number") {
+  @form(routes.InventoryProductsController.quantityOfProduct, 'class -> "form-class") {
+    @inputText(inventoryProductForm("stockNumber"))
+    <input type="submit" value="Send" class="btn btn-large btn-mobile-block btn-blue">
+  }
+}

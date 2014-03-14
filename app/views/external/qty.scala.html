@@ -1,0 +1,8 @@
+@(amount: List[InventoryProduct])
+
+@import helper._
+
+@main("Product Quantity") {
+  <h1>Product Quantity</h1>
+  <h1>@amount(0).qty</h1>
+}

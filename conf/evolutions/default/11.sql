@@ -14,7 +14,10 @@ CREATE TABLE inventoryProducts (
     location varchar(20) NOT NULL,
     maxLvl integer NOT NULL,
     PRIMARY KEY (id)
-)
+);
+
+INSERT INTO inventoryProducts(stockNumber, companyID, modelID, replenishment, qty, minLvl, location, maxLvl) VALUES ('AA00101', 1, 1, 0, 2, 1, 'A9', 10);
+INSERT INTO products(stockNumber, price, companyID, modelID, categoryID, description) VALUES ('AA00101', 1630, 1, 1, 1, 'Processor speed: 3.33Ghz, RAM size: 512Mb, Hard disk size: 100Gb, Display size: 17"');
 
 # --- !Downs
 

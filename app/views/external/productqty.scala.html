@@ -1,0 +1,11 @@
+@main("Insert Product Number") {
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    Find quantity: <input id="product_quantity" type="text"><button id="search_button" type="button">Serach</button>
+}
+
+<script>
+$( "#search_button" ).click(function() {
+    $(location).attr('href', '/productqty/' + $('#product_quantity').val());
+});
+</script>

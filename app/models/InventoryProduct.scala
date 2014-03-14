@@ -22,4 +22,8 @@ object InventoryProduct {
       case id~stockNumber~companyID~modelID~replenishment~qty~minLvl~location~maxLvl => InventoryProduct(id, stockNumber, companyID, modelID, replenishment, qty, minLvl, location, maxLvl)
     }
   }
+
+  def qtyOfProduct(qty: Int): List[InventoryProduct] = DB.withConnection { implicit c =>
+    SQL("select * from inventoryProducts where id = {qty}").on('qty -> qty).as(inventoryProduct *)
+  }
 }

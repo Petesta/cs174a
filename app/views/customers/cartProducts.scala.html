@@ -4,14 +4,9 @@
 @main("Products in cart") {
     <h1>@cartProducts.size Product(s)</h1>
 
-    @defining( {cartProducts.map { cartProduct => cartProduct._1.qty * cartProduct._2.price }.sum }) { total =>
-    <h1>@total</h1>
-    }
-
         @cartProducts.map { cartProduct =>
             @println(cartProduct)
             <ul>
-                @cartProduct._1.qty * @cartProduct._2.price
                 <li>ID: @cartProduct._1.id</li>
                 <li>Qty: @cartProduct._1.qty</li>
                 <li>Stocknr: @cartProduct._2.stockNumber</li>
@@ -30,9 +25,35 @@
         }
 
 
-        <h3>Shipping and Handling Fee: 10% if total < $100</h3>
-        <h2>Total: </h2>
+        @defining( {cartProducts.map { cartProduct => cartProduct._1.qty * cartProduct._2.price }.sum }) { total =>
 
+                <h3>Subtotal: @total</h3>
+                @if(customer.status == "Gold") {
+                    <h3>Discount: @{total*0.1}</h3>
+                    @if(total < 100.0) {
+                        <h3>Shipping and Handling Fee: @{(total-total*0.1)*0.1}</h3>
+                        <h1>Total: @{total-total*0.05+(total-total*0.1)*0.1}</h1>
+                    } else {
+                        <h3>Shipping and Handling Fee: 0</h3>
+                        <h1>Total: @{total-total*0.1}</h1>
+                    }
+                } else {
+                    @if(customer.status == "Silver") {
+                        <h3>Discount: @{total*0.05}</h3>
+                        @if(total < 100.0) {
+                                <h3>Shipping and Handling Fee: @{(total-total*0.05)*0.1}</h3>
+                                <h1>Total: @{total-total*0.05+(total-total*0.05)*0.1}</h1>
+                        } else {
+                                <h3>Shipping and Handling Fee: 0</h3>
+                                <h1>Total: @{total-total*0.05}</h1>
+                        }
+
+                    } else {
+                        <h3>Shipping and Handling Fee: @if(total < 100.0) { @{total*0.1} } else { 0 }</h3>
+                        <h1>Total: @total</h1>
+                    }
+                }
+        }
 
     <a href="@routes.CartsController.checkout(customer.id)"><button type="button">Checkout</button></a>
 }
